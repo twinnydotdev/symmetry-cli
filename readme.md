@@ -52,7 +52,7 @@ dataCollectionEnabled: true # Whether to gather lore
 maxConnections: 10 # The limit of simultaneous seekers
 modelName: llama3:8b # The true name of your oracle
 name: twinnydotdev # Your title in this realm
-path: /home/richard/.config/symmetry/default # The dwelling for data
+path: /home/twinnydotdev/.config/symmetry/default # The dwelling for data
 public: true # Whether your services are open to all
 serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435 # The key of the central tower
 ```
