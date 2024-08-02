@@ -3,5 +3,4 @@ dist
 local-install.sh
 data
 sqlite.db
-install.sh
 .vscode
