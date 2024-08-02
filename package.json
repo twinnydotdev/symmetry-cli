@@ -1,0 +1,43 @@
+{
+  "name": "symmetry-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/symmetry.js",
+  "bin": "dist/symmetry.js",
+  "author": "rjmacarthy",
+  "license": "ISC",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "package": "pkg ./dist/symmetry.js",
+    "start": "node dist/symmetry.js",
+    "dev": "ts-node src/symmetry.ts",
+    "debug": "ts-node --inspect src/symmetry.ts",
+    "lint": "eslint . --ext .ts,.js --fix"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "hypercore-crypto": "^3.4.2",
+    "hyperdht": "^6.15.4",
+    "hyperswarm": "^4.8.0",
+    "js-yaml": "^4.1.0",
+    "sqlite3": "^5.1.7",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.14.10",
+    "@types/ws": "^8.5.11",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
+    "eslint": "^8.57.0",
+    "globals": "^15.8.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "types": "types/twinnymind.d.ts"
+}

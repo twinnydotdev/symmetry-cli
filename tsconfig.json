@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2018", "DOM", "DOM.Iterable"],
+    "types": ["node", "jest"],
+    "typeRoots": ["./node_modules/@types", "."],
+    "moduleResolution": "node"
+  },
+  "ts-node": {
+    "files": true
+  },
+  "files": [
+    "global.d.ts"
+  ],
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "include": ["src/**/*", "__tests__/**/*", "global.d.ts"],
+  "exclude": ["node_modules"],
+}
