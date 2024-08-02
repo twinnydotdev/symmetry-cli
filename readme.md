@@ -34,7 +34,7 @@ symmetry-cli
 Symmetry will seek its tome of knowledge in the halls of `~/.config/symmetry/provider.yaml`. Should you wish to direct it to another scroll, speak thus:
 
 ```
-symmetry -c /path/to/your/sacred/provider.yaml
+symmetry-cli -c /path/to/your/sacred/provider.yaml
 ```
 
 ## Configuration
