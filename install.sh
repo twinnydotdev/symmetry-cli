@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# Symmetry CLI Install Script for macOS/Linux
+
 set -e
 
 RED='\033[0;31m'
@@ -16,38 +18,12 @@ if ! command -v npm >/dev/null 2>&1; then
 fi
 
 print_color "$YELLOW" "Installing symmetry-cli globally..."
-if npm install -g symmetry-cli; then
+if npm install -g .; then
     print_color "$GREEN" "symmetry-cli installed successfully!"
 else
     print_color "$RED" "Failed to install symmetry-cli. Please check your npm configuration and try again."
     exit 1
 fi
-
-print_color "$YELLOW" "Please select an API provider:"
-print_color "$NC" "1) LiteLLM"
-print_color "$NC" "2) LlamaCpp"
-print_color "$NC" "3) LMStudio"
-print_color "$NC" "4) Ollama"
-print_color "$NC" "5) Oobabooga"
-print_color "$NC" "6) OpenWebUI"
-
-api_provider=""
-while [ -z "$api_provider" ]; do
-    printf "Enter the number of your choice: "
-    read -r choice
-    case $choice in
-        1) api_provider="litellm" ;;
-        2) api_provider="llamacpp" ;;
-        3) api_provider="lmstudio" ;;
-        4) api_provider="ollama" ;;
-        5) api_provider="oobabooga" ;;
-        6) api_provider="openwebui" ;;
-        *) print_color "$RED" "Invalid option. Please try again." ;;
-    esac
-done
-
-print_color "$YELLOW" "Please enter the model name you want to use:"
-read -r model_name
 
 config_dir="$HOME/.config/symmetry"
 provider_yaml="$config_dir/provider.yaml"
@@ -63,10 +39,10 @@ apiKey:
 apiPath: /v1/chat/completions
 apiPort: 11434
 apiProtocol: http
-apiProvider: $api_provider
+apiProvider: ollama
 dataCollectionEnabled: true
 maxConnections: 10
-modelName: $model_name
+modelName: llama3.1:latest
 name: $(whoami)
 path: $config_dir
 public: true
@@ -82,5 +58,3 @@ print_color "$YELLOW" "Please edit $provider_yaml to customize your provider set
 print_color "$YELLOW" "  - apiKey: Add your API key if required"
 print_color "$YELLOW" "  - name: Currently set to your system username, change if needed"
 print_color "$YELLOW" "  - public: Set to true by default, change to false if you don't want to be publicly accessible"
-
-print_color "$YELLOW" "Note: Symmetry is currently in alpha. Connections may be unstable or fail, especially when there are few active providers on the network."
