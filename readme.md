@@ -15,12 +15,12 @@ To call forth Symmetry into your realm, speak these words of power:
 
 Linux and MacOs
 ```
-curl -fsSL https://raw.githubusercontent.com/twinnydotdev/symmetry/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.sh | sh
 ```
 
 Windows
 ```
-iwr -useb https://raw.githubusercontent.com/twinnydotdev/symmetry/main/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.ps1 | iex
 ```
 
 ## Usage
