@@ -147,7 +147,7 @@ For those who wish to shape Symmetry with their own hands:
 
 4. Awaken:
    ```
-   npm start
+   npm run dev
    ```
 
 ## Call for Heroes
