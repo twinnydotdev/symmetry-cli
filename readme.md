@@ -133,6 +133,4 @@ If you encounter any issues or have questions, please [open an issue](https://gi
 ## Acknowledgments
 
 We thank [Hyperswarm](https://github.com/holepunchto/hyperswarm) for providing the underlying peer-to-peer networking capabilities.
-```
 
-This markdown version provides a clean, professional, and easily readable README for the Symmetry project.
