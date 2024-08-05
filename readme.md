@@ -1,63 +1,66 @@
-#  Symmetry
+# Symmetry
 
-In the vast lands of the Internet, where bits and bytes flow like the rivers of old, there arose a tool of great power and purpose. Symmetry the enchanted mirror. With Symmetry, users of the digital realm could offer their computational strength to others, allowing seekers of knowledge to tap into the wisdom of distant machines.
+Use this repository to become an inference provider on the Symmetry network.
+
+Symmetry is a decentralized peer-to-peer network tool that allows users to share computational resources for AI inference. It enables users to connect directly and securely with each other, offering or seeking computational power for various AI tasks.
 
 ## Features
 
-- **Network**: A decentralized network, of interconnected peers.
-- **Configuration**: A scroll of YAML, easily inscribed to bend Symmetry to one's will.
-- **Privacy**: A choice between openness and secrecy.
-- **Data collection**: An option to gather tales of interactions, should the provider wish it so.
+- Decentralized peer-to-peer network
+- YAML-based configuration
+- Privacy options
+- Optional data collection for providers
+- Compatible with various AI inference providers
 
 ## Installation
 
-To call forth Symmetry into your realm, speak these words of power:
+To install Symmetry, use the following commands:
 
-Linux and MacOs
-```
+For Linux and macOS:
+```bash
 curl -fsSL https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.sh | sh
 ```
 
-Windows
-```
+For Windows:
+```powershell
 iwr -useb https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.ps1 | iex
 ```
 
 ## Usage
 
-To awaken Symmetry, utter this command:
+To start Symmetry, run:
 
-```
+```bash
 symmetry-cli
 ```
 
-Symmetry will seek its tome of knowledge in the halls of `~/.config/symmetry/provider.yaml`. Should you wish to direct it to another scroll, speak thus:
+By default, Symmetry looks for its configuration file at `~/.config/symmetry/provider.yaml`. To use a different configuration file, use:
 
-```
-symmetry-cli -c /path/to/your/sacred/provider.yaml
+```bash
+symmetry-cli -c /path/to/your/provider.yaml
 ```
 
 ## Configuration
 
-Inscribe your `provider.yaml` with these mystical runes:
+Here's an example `provider.yaml` configuration:
 
 ```yaml
-apiHostname: localhost # The dwelling of your local oracle
-apiKey: # The secret word to commune with your oracle
-apiPath: /v1/chat/completions # The path to wisdom
-apiPort: 11434 # The gate through which knowledge flows
-apiProtocol: http # The method of communion
-apiProvider: ollama # The lineage of your oracle
-dataCollectionEnabled: true # Whether to gather lore
-maxConnections: 10 # The limit of simultaneous seekers
-modelName: llama3:8b # The true name of your oracle
-name: twinnydotdev # Your title in this realm
-path: /home/twinnydotdev/.config/symmetry/default # The dwelling for data
-public: true # Whether your services are open to all
-serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435 # The key of the central tower
+apiHostname: localhost  # The hostname of the API server.
+apiKey:  # The API key for authentication.
+apiPath: /v1/chat/completions  # The endpoint path for chat completions.
+apiPort: 11434  # The port number on which the API server is listening.
+apiProtocol: http  # The protocol used to communicate with the API server.
+apiProvider: ollama  # The name of the API provider.
+dataCollectionEnabled: false  # Whether to enable data collection.
+maxConnections: 10  # The maximum number of connections.
+modelName: llama3.1:latest  # The name and version of the AI model to use.
+name: twinnydotdev  # Your chosen name as a provider on the Symmetry network.
+path: /home/twinnydotdev/.config/symmetry/data  # The local path where Symmetry will store its configuration and data files.
+public: true  # Whether this provider is publicly accessible on the Symmetry network.
+serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435  # The unique key for connecting to the Symmetry server.
 ```
 
-Adjust these runes to align with your own preferences.
+Adjust these settings according to your preferences and setup.
 
 ## Architecture
 
@@ -88,80 +91,48 @@ graph TB
     
     C1 <--> |"4. Inference<br/>Request/Response"| P2
     C2 <--> |"4. Inference<br/>Request/Response"| P3
-
-    style S fill:#ff9900,stroke:#333,stroke-width:4px
-    style P1 fill:#00ccff,stroke:#333,stroke-width:2px
-    style P2 fill:#00ccff,stroke:#333,stroke-width:2px
-    style P3 fill:#00ccff,stroke:#333,stroke-width:2px
-    style C1 fill:#333,stroke:#fff,stroke-width:2px
-    style C2 fill:#333,stroke:#fff,stroke-width:2px
 ```
 
-### Server, Providers and Clients:
-- **Central Server**: Symmetry Server, a beacon of order in the chaotic digital winds.
-- **Providers**: Inference Providers, keepers of knowledge and computational might.
-- **Client**: Clients, adventurers in search of answers from the oracles of data.
+## Development
 
-### Connection:
+To set up Symmetry for development:
 
-1. The Providers approach the Central Tower, proving their worth and declaring their specialties.
-2. Seekers call out to the Tower, their questions echoing in the digital void.
-3. The Tower, in its wisdom, guides each Seeker to a suitable Provider.
-4. Seeker and Provider join in a dance of query and response, their connection direct and true.
-
-### Communication:
-
-- All messages between Seekers and Providers are cloaked in unbreakable encryption, safe from prying eyes.
-- The Providers may choose to remember the tales told to them, a choice they must declare openly.
-- Seekers are granted the wisdom to choose their Providers based on these declarations of memory.
-
-### Features:
-
-- **Adaptability**: As changeable as the seasons, ready for new knowledge and new seekers.
-- **Swiftness**: Direct connections ensure that wisdom flows like the rapids of a mountain stream.
-- **Guardianship**: Only the worthy may enter this circle of trust.
-- **Balance**: The Tower ensures no single Provider bears too heavy a burden.
-- **Growth**: New Providers may join the circle, expanding the realm of possibility.
-
-Thus does Symmetry weave its web of connections, bringing together the seekers and keepers of digital wisdom in a grand tapestry of knowledge and computation.
-
-## Forging of Symmetry
-
-For those who wish to shape Symmetry with their own hands:
-
-1. Summon the essence:
-   ```
+1. Clone the repository:
+   ```bash
    git clone https://github.com/twinnydotdev/symmetry.git
    cd symmetry
    ```
 
-2. Gather the necessary elements:
-   ```
+2. Install dependencies:
+   ```bash
    npm install
    ```
 
-3. Forge the tool:
-   ```
+3. Build the project:
+   ```bash
    npm run build
    ```
 
-4. Awaken:
-   ```
+4. Start the development server:
+   ```bash
    npm run dev
    ```
 
-## Call for Heroes
+## Contributing
 
-Brave souls willing to improve upon this grand design are most welcome. Present your [scrolls of change](https://github.com/twinnydotdev/symmetry/pulls) for consideration.
+Contributions are welcome! Please submit your pull requests to the [GitHub repository](https://github.com/twinnydotdev/symmetry/pulls).
 
-## Covenant
+## License
 
-This work is protected under the [Oath of MIT](https://github.com/twinnydotdev/symmetry/blob/main/LICENSE), a sacred bond between creator and user.
+This project is licensed under the [MIT License](https://github.com/twinnydotdev/symmetry/blob/main/LICENSE).
 
-## Council of Elders
+## Support
 
-Should you face trials or seek guidance, bring your [queries](https://github.com/twinnydotdev/symmetry/issues) before the Council on GitHub.
+If you encounter any issues or have questions, please [open an issue](https://github.com/twinnydotdev/symmetry/issues) on GitHub.
 
-## A Nod to the Ancients
+## Acknowledgments
 
-We pay homage to [Hyperswarm](https://github.com/holepunchto/hyperswarm), the tool that makes our connections possible.
+We thank [Hyperswarm](https://github.com/holepunchto/hyperswarm) for providing the underlying peer-to-peer networking capabilities.
+```
+
+This markdown version provides a clean, professional, and easily readable README for the Symmetry project.
