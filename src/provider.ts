@@ -191,10 +191,11 @@ export class SymmetryProvider {
   }
 
   private getMessagesWithSystem(messages: Message[]): Message[] {
-    if (messages.length === 2) {
+    const systemMessage = this._config.get("systemMessage")
+    if (messages.length === 2 && systemMessage) {
       messages.unshift({
         role: "system",
-        content: this._config.get("systemMessage"),
+        content: systemMessage,
       });
     }
     return messages;
