@@ -13,10 +13,8 @@ import {
   safeParseStreamResponse,
 } from "./utils";
 import { logger } from "./logger";
-import { Peer, ProviderMessage, InferenceRequest } from "./types";
-import {
-  serverMessageKeys,
-} from "./constants";
+import { Peer, ProviderMessage, InferenceRequest, Message } from "./types";
+import { serverMessageKeys } from "./constants";
 
 export class SymmetryProvider {
   private _challenge: Buffer | null = null;
@@ -192,13 +190,23 @@ export class SymmetryProvider {
     });
   }
 
+  private getMessagesWithSystem(messages: Message[]): Message[] {
+    if (messages.length === 2) {
+      messages.unshift({
+        role: "system",
+        content: this._config.get("systemMessage"),
+      });
+    }
+    return messages;
+  }
+
   private async handleInferenceRequest(
     data: ProviderMessage<InferenceRequest>,
     peer: Peer
   ): Promise<void> {
     const emitterKey = data.data.key;
-
-    const req = this.buildStreamRequest(data?.data.messages);
+    const messages = this.getMessagesWithSystem(data?.data.messages);
+    const req = this.buildStreamRequest(messages);
 
     if (!req) return;
 
@@ -277,7 +285,7 @@ export class SymmetryProvider {
   private async saveCompletion(
     completion: string,
     peer: Peer,
-    messages: { role: string; content: string }[]
+    messages: Message[]
   ) {
     fs.writeFile(
       `${this._config.get("path")}/${peer.publicKey.toString("hex")}-${
@@ -296,7 +304,7 @@ export class SymmetryProvider {
     );
   }
 
-  private buildStreamRequest(messages: { role: string; content: string }[]) {
+  private buildStreamRequest(messages: Message[]) {
     const requestOptions = {
       hostname: this._config.get("apiHostname"),
       port: Number(this._config.get("apiPort")),

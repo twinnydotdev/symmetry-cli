@@ -18,6 +18,7 @@ export interface ProviderConfig {
   port: number;
   public: boolean;
   serverKey: string;
+  systemMessage: string;
 }
 
 export interface ProviderMessage<T = unknown> {
@@ -27,7 +28,7 @@ export interface ProviderMessage<T = unknown> {
 
 export interface InferenceRequest {
   key: string;
-  messages: { role: string; content: string }[];
+  messages: Message[];
 }
 
 interface ReadableState {
