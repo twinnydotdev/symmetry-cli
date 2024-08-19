@@ -44,6 +44,7 @@ modelName: llama3.1:latest
 name: $env:USERNAME
 path: $config_dir
 public: true
+systemMessage:
 serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435
 "@ | Set-Content $provider_yaml
     Print-Color $GREEN "provider.yaml created successfully at $provider_yaml"

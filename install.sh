@@ -46,7 +46,9 @@ modelName: llama3.1:latest
 name: $(whoami)
 path: $config_dir
 public: true
+systemMessage:
 serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435
+
 EOF
     print_color "$GREEN" "provider.yaml created successfully at $provider_yaml"
 else
@@ -54,7 +56,4 @@ else
 fi
 
 print_color "$GREEN" "Installation complete! You can now run 'symmetry-cli' to start your node."
-print_color "$YELLOW" "Please edit $provider_yaml to customize your provider settings, especially:"
-print_color "$YELLOW" "  - apiKey: Add your API key if required"
-print_color "$YELLOW" "  - name: Currently set to your system username, change if needed"
-print_color "$YELLOW" "  - public: Set to true by default, change to false if you don't want to be publicly accessible"
+print_color "$YELLOW" "Please edit $provider_yaml to customize your provider settings:"
