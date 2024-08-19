@@ -63,7 +63,7 @@ export class SymmetryProvider {
         chalk.white(`🔑 Server key: ${this._config.get("serverKey")}`)
       );
       logger.info(chalk.white("🔗 Joining server, please wait."));
-      await this.joinServer();
+      this.testProviderCall();
     }
 
     process.on("SIGINT", async () => {
@@ -76,6 +76,66 @@ export class SymmetryProvider {
         this._providerConnections = Math.max(0, this._providerConnections - 1);
       }
     });
+  }
+
+  private async testProviderCall(): Promise<void> {
+    logger.info(chalk.white(`👋 Saying hello to your provider...`));
+    const testMessages: Message[] = [
+      { role: "user", content: "Hello, this is a test message." },
+    ];
+    const req = this.buildStreamRequest(testMessages);
+
+    if (!req) {
+      logger.error(chalk.red("❌ Failed to build test request"));
+      throw new Error("Failed to build test request");
+    }
+
+    const { requestOptions, requestBody } = req;
+    const { protocol, hostname, port, path, method, headers } = requestOptions;
+    const url = `${protocol}://${hostname}:${port}${path}`;
+
+    logger.info(chalk.white(`🚀 Sending test request to ${url}`));
+
+    try {
+      const response = await fetch(url, {
+        method,
+        headers,
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!response.ok) {
+        logger.error(
+          chalk.red(`❌ Server responded with status code: ${response.status}`)
+        );
+        throw new Error(
+          `Server responded with status code: ${response.status}`
+        );
+      }
+
+      if (!response.body) {
+        logger.error(
+          chalk.red("❌ Failed to get a ReadableStream from the response")
+        );
+        throw new Error("Failed to get a ReadableStream from the response");
+      }
+
+      logger.info(chalk.white(`📡 Got response, checking stream...`));
+
+      const reader = response.body.getReader();
+      const { done } = await reader.read();
+      if (done) {
+        logger.error(chalk.red("❌ Stream ended without data"));
+        throw new Error("Stream ended without data");
+      }
+
+      logger.info(chalk.green(`✅ Test inference call successful!`));
+    } catch (error) {
+      logger.error(chalk.red(`❌ Error during test inference call: ${error}`));
+      throw error;
+    }
+
+    logger.info(chalk.white(`🔗 Proceeding to join server...`));
+    await this.joinServer();
   }
 
   async joinServer(): Promise<void> {
@@ -191,7 +251,7 @@ export class SymmetryProvider {
   }
 
   private getMessagesWithSystem(messages: Message[]): Message[] {
-    const systemMessage = this._config.get("systemMessage")
+    const systemMessage = this._config.get("systemMessage");
     if (messages.length === 2 && systemMessage) {
       messages.unshift({
         role: "system",
