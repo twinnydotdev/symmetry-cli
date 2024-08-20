@@ -45,7 +45,7 @@ describe("Symmetry", () => {
     apiProvider: "test-provider",
     modelName: "test-model",
     name: "test",
-    public: true,
+    public: false,
     serverKey: "test-server-key",
     systemMessage: "test-system-message",
   };
