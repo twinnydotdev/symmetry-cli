@@ -20,7 +20,7 @@ For Linux and macOS:
 
 
 ```bash
-sudo curl -fsSL https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.sh | sudo sh
+curl -fsSL https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.sh | sh
 ```
 
 For Windows:
