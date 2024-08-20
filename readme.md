@@ -17,15 +17,13 @@ Symmetry is a decentralized peer-to-peer network tool that allows users to share
 To install Symmetry, use the following commands:
 
 For Linux and macOS:
-
-
 ```bash
-curl -fsSL https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.sh | sh
+curl -fsSL https://www.twinny.dev/symmetry-unix.sh | sh
 ```
 
 For Windows:
 ```powershell
-iwr -useb https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.ps1 | iex
+iwr -useb https://www.twinny.dev/symmetry-windows.ps1 | iex
 ```
 
 ## Usage
