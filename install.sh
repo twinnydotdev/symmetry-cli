@@ -18,7 +18,7 @@ if ! command -v npm >/dev/null 2>&1; then
 fi
 
 print_color "$YELLOW" "Installing symmetry-cli globally..."
-if npm install -g .; then
+if npm install -g symmetry-cli; then
     print_color "$GREEN" "symmetry-cli installed successfully!"
 else
     print_color "$RED" "Failed to install symmetry-cli. Please check your npm configuration and try again."
