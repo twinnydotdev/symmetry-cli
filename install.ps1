@@ -16,7 +16,7 @@ if (!(Get-Command npm -ErrorAction SilentlyContinue)) {
 }
 
 Print-Color $YELLOW "Installing symmetry-cli globally..."
-if (npm install -g .) {
+if (npm install -g symmetry-cli) {
     Print-Color $GREEN "symmetry-cli installed successfully!"
 } else {
     Print-Color $RED "Failed to install symmetry-cli. Please check your npm configuration and try again."
