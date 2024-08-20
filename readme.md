@@ -20,7 +20,6 @@ For Linux and macOS:
 
 
 ```bash
-git clone https://github.com/twinnydotdev/symmetry
 sudo curl -fsSL https://raw.githubusercontent.com/twinnydotdev/symmetry/master/install.sh | sudo sh
 ```
 
