@@ -1,5 +1,7 @@
 export const NORMALIZE_REGEX = /\s*\r?\n|\r/g;
 
+export const PROVIDER_HELLO_TIMEOUT = 30000
+
 export const serverMessageKeys = {
   challenge: "challenge",
   conectionSize: "conectionSize",

@@ -14,7 +14,7 @@ import {
 } from "./utils";
 import { logger } from "./logger";
 import { Peer, ProviderMessage, InferenceRequest, Message } from "./types";
-import { serverMessageKeys } from "./constants";
+import { PROVIDER_HELLO_TIMEOUT, serverMessageKeys } from "./constants";
 
 export class SymmetryProvider {
   private _challenge: Buffer | null = null;
@@ -24,6 +24,7 @@ export class SymmetryProvider {
   private _isPublic = false;
   private _providerConnections: number = 0;
   private _providerSwarm: Hyperswarm | null = null;
+  private _serverSwarm: Hyperswarm | null = null;
   private _serverPeer: Peer | null = null;
 
   constructor(configPath: string) {
@@ -63,7 +64,7 @@ export class SymmetryProvider {
         chalk.white(`🔑 Server key: ${this._config.get("serverKey")}`)
       );
       logger.info(chalk.white("🔗 Joining server, please wait."));
-      this.testProviderCall();
+      this.joinServer();
     }
 
     process.on("SIGINT", async () => {
@@ -78,77 +79,96 @@ export class SymmetryProvider {
     });
   }
 
+  async destroySwarms() {
+    await this._providerSwarm?.destroy();
+    await this._serverSwarm?.destroy();
+  }
+
   private async testProviderCall(): Promise<void> {
-    logger.info(chalk.white(`👋 Saying hello to your provider...`));
-    const testMessages: Message[] = [
-      { role: "user", content: "Hello, this is a test message." },
-    ];
-    const req = this.buildStreamRequest(testMessages);
+    const testCall = async () => {
+      logger.info(chalk.white(`👋 Saying hello to your provider...`));
+      const testMessages: Message[] = [
+        { role: "user", content: "Hello, this is a test message." },
+      ];
+      const req = this.buildStreamRequest(testMessages);
 
-    if (!req) {
-      logger.error(chalk.red("❌ Failed to build test request"));
-      throw new Error("Failed to build test request");
-    }
+      if (!req) {
+        logger.error(chalk.red("❌ Failed to build test request"));
+        throw new Error("Failed to build test request");
+      }
 
-    const { requestOptions, requestBody } = req;
-    const { protocol, hostname, port, path, method, headers } = requestOptions;
-    const url = `${protocol}://${hostname}:${port}${path}`;
+      const { requestOptions, requestBody } = req;
+      const { protocol, hostname, port, path, method, headers } =
+        requestOptions;
+      const url = `${protocol}://${hostname}:${port}${path}`;
 
-    logger.info(chalk.white(`🚀 Sending test request to ${url}`));
+      logger.info(chalk.white(`🚀 Sending test request to ${url}`));
 
-    try {
-      const response = await fetch(url, {
-        method,
-        headers,
-        body: JSON.stringify(requestBody),
-      });
+      try {
+        const response = await fetch(url, {
+          method,
+          headers,
+          body: JSON.stringify(requestBody),
+        });
 
-      if (!response.ok) {
+        if (!response.ok) {
+          logger.error(
+            chalk.red(
+              `❌ Server responded with status code: ${response.status}`
+            )
+          );
+          this.destroySwarms();
+          throw new Error(
+            `Server responded with status code: ${response.status}`
+          );
+        }
+
+        if (!response.body) {
+          logger.error(
+            chalk.red("❌ Failed to get a ReadableStream from the response")
+          );
+          this.destroySwarms();
+          throw new Error("Failed to get a ReadableStream from the response");
+        }
+
+        logger.info(chalk.white(`📡 Got response, checking stream...`));
+
+        const reader = response.body.getReader();
+        const { done } = await reader.read();
+        if (done) {
+          logger.error(chalk.red("❌ Stream ended without data"));
+          this.destroySwarms();
+          throw new Error("Stream ended without data");
+        }
+
+        logger.info(chalk.green(`✅ Test inference call successful!`));
+      } catch (error) {
+        this.destroySwarms();
         logger.error(
-          chalk.red(`❌ Server responded with status code: ${response.status}`)
+          chalk.red(`❌ Error during test inference call: ${error}`)
         );
-        throw new Error(
-          `Server responded with status code: ${response.status}`
-        );
+        throw error;
       }
 
-      if (!response.body) {
-        logger.error(
-          chalk.red("❌ Failed to get a ReadableStream from the response")
-        );
-        throw new Error("Failed to get a ReadableStream from the response");
-      }
+      logger.info(chalk.white(`🔗 Test call successful!`));
+    };
 
-      logger.info(chalk.white(`📡 Got response, checking stream...`));
-
-      const reader = response.body.getReader();
-      const { done } = await reader.read();
-      if (done) {
-        logger.error(chalk.red("❌ Stream ended without data"));
-        throw new Error("Stream ended without data");
-      }
-
-      logger.info(chalk.green(`✅ Test inference call successful!`));
-    } catch (error) {
-      logger.error(chalk.red(`❌ Error during test inference call: ${error}`));
-      throw error;
-    }
-
-    logger.info(chalk.white(`🔗 Proceeding to join server...`));
-    await this.joinServer();
+    setTimeout(() => testCall(), PROVIDER_HELLO_TIMEOUT)
   }
 
   async joinServer(): Promise<void> {
-    const serverSwarm = new Hyperswarm();
+    this._serverSwarm = new Hyperswarm();
     const serverKey = Buffer.from(this._config.get("serverKey"));
-    serverSwarm.join(crypto.discoveryKey(serverKey), {
+    this._serverSwarm.join(crypto.discoveryKey(serverKey), {
       client: true,
       server: false,
     });
-    serverSwarm.flush();
-    serverSwarm.on("connection", (peer: Peer) => {
+    this._serverSwarm.flush();
+    this._serverSwarm.on("connection", (peer: Peer) => {
       this._serverPeer = peer;
       logger.info(chalk.green("🔗 Connected to server."));
+
+      this.testProviderCall();
 
       this._challenge = crypto.randomBytes(32);
 
