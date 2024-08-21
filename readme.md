@@ -34,6 +34,22 @@ To start Symmetry, run:
 symmetry-cli
 ```
 
+You will then be joined with the symmetry server and ready for connections!
+
+```bash
+ℹ️ INFO: 🔗 Initializing client using config file: /home/twinnydotdev/.config/symmetry/provider.yaml
+ℹ️ INFO: 📁 Symmetry client initialized.
+ℹ️ INFO: 🔑 Discovery key: xxx
+ℹ️ INFO: 🔑 Server key: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435
+ℹ️ INFO: 🔗 Joining server, please wait.
+ℹ️ INFO: 🔗 Connected to server.
+ℹ️ INFO: ✅ Verification successful.
+ℹ️ INFO: 👋 Saying hello to your provider...
+ℹ️ INFO: 🚀 Sending test request to http://localhost:11434/v1/chat/completions
+ℹ️ INFO: 📡 Got response, checking stream...
+ℹ️ INFO: ✅ Test inference call successful!
+```
+
 By default, Symmetry looks for its configuration file at `~/.config/symmetry/provider.yaml`. To use a different configuration file, use:
 
 ```bash
