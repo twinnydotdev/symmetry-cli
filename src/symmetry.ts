@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { SymmetryProvider } from 'symmetry-core'
 import os from "os";
 import path from "path";
-
-import { SymmetryProvider  } from "./provider";
 
 const program = new Command();
 
