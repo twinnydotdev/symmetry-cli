@@ -7,7 +7,7 @@ import path from "path";
 const program = new Command();
 
 program
-  .version("1.0.0")
+  .version("1.0.13")
   .description("symmetry cli")
   .option(
     "-c, --config <path>",
