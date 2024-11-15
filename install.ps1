@@ -25,8 +25,10 @@ if (npm install -g symmetry-cli) {
 
 $config_dir = "$env:USERPROFILE\.config\symmetry"
 $provider_yaml = "$config_dir\provider.yaml"
+$user_secret = (Get-Random).ToString()
 
 New-Item -ItemType Directory -Force -Path $config_dir | Out-Null
+
 
 if (!(Test-Path $provider_yaml)) {
     Print-Color $YELLOW "Creating provider.yaml file..."
@@ -45,6 +47,7 @@ name: $env:USERNAME
 path: $config_dir
 public: true
 systemMessage:
+userSecret: $user_secret
 serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435
 "@ | Set-Content $provider_yaml
     Print-Color $GREEN "provider.yaml created successfully at $provider_yaml"

@@ -27,8 +27,10 @@ fi
 
 config_dir="$HOME/.config/symmetry"
 provider_yaml="$config_dir/provider.yaml"
+user_secret=$(openssl rand -hex 16)
 
 mkdir -p "$config_dir"
+
 
 if [ ! -f "$provider_yaml" ]; then
     print_color "$YELLOW" "Creating provider.yaml file..."
@@ -48,6 +50,7 @@ path: $config_dir
 public: true
 systemMessage:
 serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435
+userSecret: $user_secret
 
 EOF
     print_color "$GREEN" "provider.yaml created successfully at $provider_yaml"
