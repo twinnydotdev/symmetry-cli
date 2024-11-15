@@ -75,6 +75,7 @@ path: /home/twinnydotdev/.config/symmetry/data  # The local path where Symmetry 
 public: true  # Whether this provider is publicly accessible on the Symmetry network.
 serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435  # The unique key for connecting to the Symmetry server.
 systemMessage: "I'm a system message" # An optional system message for each conversation.
+userSecret: # The secret key for user authentication and points tracking.
 ```
 
 Adjust these settings according to your preferences and setup.
