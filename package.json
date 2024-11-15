@@ -6,6 +6,11 @@
   "bin": "dist/symmetry.js",
   "author": "rjmacarthy",
   "license": "ISC",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "test": "jest",
     "build": "tsc",
@@ -13,7 +18,8 @@
     "start": "node dist/symmetry.js",
     "dev": "ts-node src/symmetry.ts",
     "debug": "ts-node --inspect src/symmetry.ts",
-    "lint": "eslint . --ext .ts,.js --fix"
+    "lint": "eslint . --ext .ts,.js --fix",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "commander": "^12.1.0",
