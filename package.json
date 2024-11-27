@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
-    "symmetry-core": "^1.0.17"
+    "symmetry-core": "^1.0.19"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
