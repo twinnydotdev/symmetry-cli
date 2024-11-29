@@ -36,7 +36,7 @@ if (!(Test-Path $provider_yaml)) {
 # Symmetry Configuration
 apiHostname: localhost
 apiKey: 
-apiPath: /v1/chat/completions
+apiChatPath: /v1/chat/completions
 apiPort: 11434
 apiProtocol: http
 apiProvider: ollama
