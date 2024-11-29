@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
-    "symmetry-core": "^1.0.19"
+    "js-yaml": "^4.1.0",
+    "symmetry-core": "^1.0.21"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
