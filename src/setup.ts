@@ -5,6 +5,7 @@ import {
   logger,
   OllamaProvider,
   OpenWebUIProvider,
+  OobaboogaProvider,
 } from "symmetry-core";
 
 export class SetupCommand {
@@ -16,6 +17,7 @@ export class SetupCommand {
       new OpenWebUIProvider(),
       new LMStudioProvider(),
       new LlamaCppProvider(),
+      new OobaboogaProvider(),
     ];
 
     for (const provider of providers) {
