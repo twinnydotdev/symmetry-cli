@@ -10,7 +10,7 @@ import { SymmetryCLI } from "./start";
 const program = new Command();
 
 program
-  .version("1.0.26")
+  .version("1.0.27")
   .description("symmetry cli")
   .option(
     "-c, --config <path>",
