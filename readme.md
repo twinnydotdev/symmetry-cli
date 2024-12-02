@@ -93,8 +93,8 @@ graph TB
     end
     
     subgraph "Clients"
-        C1[Client 1<br/>Requests Model B]
-        C2[Client 2<br/>Requests Model C]
+        C1[Client 1 Requests Model B]
+        C2[Client 2 Requests Model C]
     end
     
     P1 <--> |"1. Connect & Auth & Register Model"| S
@@ -104,11 +104,11 @@ graph TB
     C1 -- "2. Connect" --> S
     C2 -- "2. Connect" --> S
     
-    S -- "3. Assign Provider<br/>based on Model" --> C1
-    S -- "3. Assign Provider<br/>based on Model" --> C2
+    S -- "3. Assign Provider based on Model" --> C1
+    S -- "3. Assign Provider based on Model" --> C2
     
-    C1 <--> |"4. Inference<br/>Request/Response"| P2
-    C2 <--> |"4. Inference<br/>Request/Response"| P3
+    C1 <--> |"4. Inference Request/Response"| P2
+    C2 <--> |"4. Inference Request/Response"| P3
 ```
 
 ## Development
