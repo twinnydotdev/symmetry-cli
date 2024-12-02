@@ -142,7 +142,7 @@ Contributions are welcome! Please submit your pull requests to the [GitHub repos
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/twinnydotdev/symmetry/blob/master/LICENCE).
+This project is licensed under the [Apache 2.0 Licence](https://github.com/twinnydotdev/symmetry/blob/master/LICENCE).
 
 ## Support
 
