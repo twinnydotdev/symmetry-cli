@@ -2,7 +2,7 @@
 
 Use this repository to become an inference provider on the Symmetry network.
 
-Symmetry is a decentralized peer-to-peer network tool that allows users to share computational resources for AI inference. It enables users to connect directly and securely with each other, offering or seeking computational power for various AI tasks.
+Symmetry is a distributed peer-to-peer network tool that allows users to share computational resources for AI inference. It enables users to connect directly and securely with each other, offering or seeking computational power for various AI tasks.
 
 ## Features
 
