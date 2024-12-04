@@ -28,7 +28,7 @@ iwr -useb https://www.twinny.dev/symmetry-windows.ps1 | iex
 
 ## Usage
 
-To start Symmetry, run:
+To start Symmetry, run which will create a config file and detect your provider.
 
 ```bash
 symmetry-cli
