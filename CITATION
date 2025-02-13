@@ -1,0 +1,12 @@
+# Citation
+
+If you use this software, please cite it as:
+
+```bibtex
+@software{symmetry-cli,
+ author = {rjmacarthy},
+ title = {Symmetry-CLI: Client for peer-to-peer inference over networks},
+ year = {2025},
+ url = {https://github.com/twinnydotdev/symmetry-cli},
+ note = {Accessed: 2025-02-13}
+}
