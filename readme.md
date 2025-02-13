@@ -31,7 +31,7 @@ iwr -useb https://www.twinny.dev/symmetry-windows.ps1 | iex
 To start Symmetry, run which will create a config file and detect your provider.
 
 ```bash
-symmetry-cli
+symmetry-cli start
 ```
 
 You will then be joined with the symmetry server and ready for connections!
@@ -53,7 +53,7 @@ You will then be joined with the symmetry server and ready for connections!
 By default, Symmetry looks for its configuration file at `~/.config/symmetry/provider.yaml`. To use a different configuration file, use:
 
 ```bash
-symmetry-cli -c /path/to/your/provider.yaml
+symmetry-cli start -c /path/to/your/provider.yaml
 ```
 
 ## Configuration

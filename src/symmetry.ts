@@ -6,11 +6,12 @@ import path from "path";
 
 import { SetupCommand } from "./setup";
 import { SymmetryCLI } from "./start";
+import { version } from "../package.json";
 
 const program = new Command();
 
 program
-  .version("1.0.35")
+  .version(version)
   .description("symmetry cli")
   .option(
     "-c, --config <path>",
@@ -36,9 +37,5 @@ program
   .action(async () => {
     await SymmetryCLI.initialize(program.opts().config);
   });
-
-program.action(async () => {
-  await SymmetryCLI.initialize(program.opts().config);
-});
 
 program.parse(process.argv);
