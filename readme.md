@@ -63,7 +63,7 @@ Here's an example `provider.yaml` configuration:
 ```yaml
 apiHostname: localhost  # The hostname of the API server.
 apiKey:  # The API key for authentication.
-apiChatPath: /v1/chat/completions  # The endpoint path for chat completions.
+apiBasePath: /v1  # The endpoint path for the api.
 apiPort: 11434  # The port number on which the API server is listening.
 apiProtocol: http  # The protocol used to communicate with the API server.
 apiProvider: ollama  # The name of the API provider.
