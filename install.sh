@@ -25,38 +25,4 @@ else
     exit 1
 fi
 
-config_dir="$HOME/.config/symmetry"
-provider_yaml="$config_dir/provider.yaml"
-user_secret=$(openssl rand -hex 16)
-
-mkdir -p "$config_dir"
-
-
-if [ ! -f "$provider_yaml" ]; then
-    print_color "$YELLOW" "Creating provider.yaml file..."
-    cat << EOF > "$provider_yaml"
-# Symmetry Configuration
-apiHostname: localhost
-apiKey: 
-apiChatPath: /v1/chat/completions
-apiPort: 11434
-apiProtocol: http
-apiProvider: ollama
-dataCollectionEnabled: true
-maxConnections: 10
-modelName: llama3.1:latest
-name: $(whoami)
-path: $config_dir
-public: true
-systemMessage:
-serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435
-userSecret: $user_secret
-
-EOF
-    print_color "$GREEN" "provider.yaml created successfully at $provider_yaml"
-else
-    print_color "$YELLOW" "provider.yaml already exists at $provider_yaml"
-fi
-
-print_color "$GREEN" "Installation complete! You can now run 'symmetry-cli' to start your node."
-print_color "$YELLOW" "Please edit $provider_yaml to customize your provider settings:"
+print_color "$GREEN" "Installation complete! You can now run 'symmetry-cli start' to start your node."
