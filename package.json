@@ -1,6 +1,6 @@
 {
   "name": "symmetry-cli",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "description": "",
   "main": "dist/symmetry.js",
   "bin": "dist/symmetry.js",
