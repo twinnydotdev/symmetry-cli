@@ -43,7 +43,6 @@ You will then be joined with the symmetry server and ready for connections!
 ℹ️ INFO: 🔑 Server key: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435
 ℹ️ INFO: 🔗 Joining server, please wait.
 ℹ️ INFO: 🔗 Connected to server.
-ℹ️ INFO: ✅ Verification successful.
 ℹ️ INFO: 👋 Saying hello to your provider...
 ℹ️ INFO: 🚀 Sending test request to http://localhost:11434/v1/chat/completions
 ℹ️ INFO: 📡 Got response, checking stream...
@@ -66,13 +65,8 @@ apiKey:  # The API key for authentication.
 apiBasePath: /v1  # The endpoint path for the api.
 apiPort: 11434  # The port number on which the API server is listening.
 apiProtocol: http  # The protocol used to communicate with the API server.
-apiProvider: ollama  # The name of the API provider.
-dataCollectionEnabled: false  # Whether to enable data collection.
-maxConnections: 10  # The maximum number of connections.
 modelName: llama3.1:latest  # The name and version of the AI model to use.
 name: twinnydotdev  # Your chosen name as a provider on the Symmetry network.
-dataPath: /home/twinnydotdev/.config/symmetry/data  # The local path where Symmetry will store its configuration and data files.
-public: true  # Whether this provider is publicly accessible on the Symmetry network.
 serverKey: 4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435  # The unique key for connecting to the Symmetry server.
 systemMessage: "I'm a system message" # An optional system message for each conversation.
 userSecret: # The secret key for user authentication and points tracking.
