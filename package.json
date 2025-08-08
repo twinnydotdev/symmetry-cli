@@ -24,7 +24,7 @@
   "dependencies": {
     "commander": "^12.1.0",
     "js-yaml": "^4.1.0",
-    "symmetry-core": "^1.0.46"
+    "symmetry-core": "^1.0.47"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
